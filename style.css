@@ -13,7 +13,15 @@ html {
   border-radius: 6px;
   border: 1px solid black;
   font-size: 0.5rem;
+  margin-left : 0.5rem;
 }
 .book-card {
   font-size: 0.5rem;
+}
+.form {
+  font-size: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }

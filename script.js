@@ -13,16 +13,17 @@ function addBookToLibrary(title, author, read) {
 }
 var container = document.querySelector('.container');
 var bookButton = document.createElement('button');
-bookButton.textContent = 'Add Book';
-bookButton.classList.add('btn');
-container.appendChild(bookButton);
-bookButton.addEventListener('click', function () {
-    var title = String(prompt('Enter the title of the book'));
-    var author = String(prompt('Enter the author of the book'));
-    var read = prompt('Have you read this book?') === 'yes' || 'y' ? true : false;
-    addBookToLibrary(title, author, read);
-    bookHandler(myLibrary[myLibrary.length - 1]);
-});
+// Book button - for testing purposes
+// bookButton.textContent = 'Add Book';
+// bookButton.classList.add('btn');
+// container.appendChild(bookButton);
+// bookButton.addEventListener('click', () => {
+//   const title = String(prompt('Enter the title of the book'));
+//   const author = String(prompt('Enter the author of the book'));
+//   const read = prompt('Have you read this book?') === 'yes' || 'y' ? true : false;
+//   addBookToLibrary(title, author, read);
+//   bookHandler(myLibrary[myLibrary.length - 1]);
+// })
 for (var i = 0; i < myLibrary.length; i++) {
     var book = myLibrary[i];
     console.log(myLibrary[i]);
@@ -49,6 +50,36 @@ var bookHandler = function (book) {
     bookCard.appendChild(removeButton);
     container.appendChild(bookCard);
 };
-// next: add local storage
-// next: add a read button
 // next: add a form to add books
+var form = document.createElement('form');
+form.classList.add('form');
+var titleInput = document.createElement('input');
+titleInput.type = 'text';
+titleInput.placeholder = 'Title';
+var authorInput = document.createElement('input');
+authorInput.type = 'text';
+authorInput.placeholder = 'Author';
+var readInput = document.createElement('input');
+readInput.type = 'checkbox';
+readInput.id = 'read';
+var readLabel = document.createElement('label');
+readLabel.textContent = 'Read';
+readLabel.htmlFor = 'read';
+var submitButton = document.createElement('button');
+submitButton.textContent = 'Submit';
+submitButton.classList.add('btn');
+form.appendChild(titleInput);
+form.appendChild(authorInput);
+form.appendChild(readInput);
+form.appendChild(readLabel);
+form.appendChild(submitButton);
+container.appendChild(form);
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    addBookToLibrary(titleInput.value, authorInput.value, readInput.checked);
+    bookHandler(myLibrary[myLibrary.length - 1]);
+    titleInput.value = '';
+    authorInput.value = '';
+    readInput.checked = false;
+});
+// next: add local storage
