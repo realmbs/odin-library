@@ -58,3 +58,7 @@ const bookHandler = (book: Book) => {
   bookCard.appendChild(removeButton);
   container.appendChild(bookCard);
 }
+
+// next: add local storage
+// next: add a read button
+// next: add a form to add books
